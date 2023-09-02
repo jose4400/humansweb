@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Ledelsesudvikling │ HUM-ANS</title>
+    <link rel="stylesheet" href="https://use.typekit.net/koq6iwh.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="tailwind.config.cjs"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  <style>
+  
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+  * {
+      box-sizing: border-box;
+  }
+body {
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif;    
+  font-weight: 200;
+  font-style: normal;
+  background: #fcfcfc;
+}
+
+  h1{
+    align-items: center; font-family: "Kobenhavn sans", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    color: #fcfcfc;
+    opacity: 100%;
+  }
+
+  h2{
+    align-items: center; font-family: "Kobenhavn sans", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    opacity: 100%;
+  }
+  h3{
+    color: #4E7A58;
+    font-size: 20px;
+    font-family: "Kobenhavn sans", sans-serif; 
+
+  }
+
+
+.overlayred{
+  background-color: #0E4D21;
+  
+}
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+    cursor: pointer;
+    padding: 0;
+border: none;
+background: none;
+  }
+  
+  .toggle {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        background: url(img/menu.svg);
+        background-repeat: no-repeat;
+        background-size: 150px;
+        background-position: center;
+        cursor: pointer;
+      }
+      .toggle.active {
+        background: url(img/close.png);
+        background-repeat: no-repeat;
+        background-size: 25px;
+        background-position: center;
+        cursor: pointer;
+      }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #7d8c80;
+    opacity: 50%;
+    display: none;
+    z-index: 300;
+  }
+  
+  .fullscreen-menu {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Offscreen initially */
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 400;
+    transition: right 0.3s ease;
+    padding-left: 20px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    font-family: "Kobenhavn sans", sans-serif;
+    font-weight: 600;   
+    font-size:x-large     
+  }
+  
+  .fullscreen-menu ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  
+  .fullscreen-menu ul li a {
+    display: inline-block;
+        font-size: 1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #111;
+        letter-spacing: 2px;
+        transition: 0.2s;
+       
+  }
+
+  .fullscreen-menu ul li a:hover {
+    display: inline-block;
+        font-size: 1em;
+        text-transform: uppercase;
+        font-weight: 500;
+        color: #7d8c80;
+        transition: 0.2s;
+  }
+  
+  button.accordion {
+        display: inline-block;
+        font-size: 1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 500;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+        transition: 0.2s;
+        padding: 0;
+        border: none;
+      background: none;
+      font-family: "Kobenhavn sans", sans-serif;
+    font-weight: 600;   
+    font-size:x-large     
+      
+      }
+
+      button.accordion:after {
+        content: "\f055";
+        font-family: "Kobenhavn sans";
+        font-size: 14px;
+        box-decoration-break: none;
+      }
+
+      button.accordion.is-open:after {
+        content: "\f056";
+      }
+
+      button.accordion:hover,
+      button.accordion.is-open {
+        display: inline-block;
+        font-size: 1em;
+        text-transform: uppercase;
+        font-weight: 500;
+        color: #7d8c80;
+        transition: 0.2s;
+      }
+
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-in-out;
+        padding: 0;
+        margin: 0;
+      }
+  /* Show the menu when the overlay is active */
+  .overlay.active {
+    display: block;
+  }
+  
+  /* Slide in the menu when active */
+  .fullscreen-menu.active {
+    right: 0;
+  }
+
+  .object-fit-fill {
+  object-fit: fill;
+}
+
+.object-fit-contain {
+  object-fit: contain;
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.object-fit-none {
+  object-fit: none;
+}
+
+.object-fit-scale-down {
+  object-fit: scale-down;
+}.bg-header {
+  background: url(img/kontor2.jpg) center no-repeat;
+  background-attachment: fixed;
+  background-color: #0E4D21;
+  
+}
+
+.bg-quote {
+  background: url(img/kontor2-kopi.jpg) center no-repeat;
+  background-attachment: fixed;
+  background-color: #0E4D21;
+}
+
+.team{
+  background: #6c7b6d;
+  border-radius: 4px;
+  font-family:'Kobenhavn sans', sans-serif;
+}
+
+.leder{
+  background: #99aebb;
+  border-radius: 4px;
+  font-family:'Kobenhavn sans', sans-serif;
+
+
+}.tema{
+  background: #cc914f; 
+  border-radius: 4px;
+  font-family:'Kobenhavn sans', sans-serif;
+}
+
+footer{
+  background-color: #CFD7D0;
+}
+a, a > span {
+  position: relative;
+  color: #6C7B6D;
+  line-height: 24px;
+}
+a:before, a:after, a > span:before, a > span:after {
+  content: '';
+  position: absolute;
+  transition: transform .5s ease;
+  color: #6c7b6d;
+}
+
+.effect {
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  overflow: hidden;
+}
+.effect:before {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #6C7B6D;
+  color: #6C7B6D;
+  transform: translateX(-100%);
+}
+.effect:hover:before {
+  transform: translateX(0);
+}
+
+
+  @media (max-width: 991px) {
+        .toggle {
+          position: relative;
+          width: 60px;
+          height: 60px;
+          background: url(img/menu-kopi.png );
+          background-repeat: no-repeat;
+          background-size: 30px;
+          background-position: center;
+          cursor: pointer;
+        }
+      }
+  </style>
+</head>
+<body>
+  <div class="menu-btn">
+    <div class="toggle"></div>
+
+  </div>
+  
+  <div class="overlay"></div>
+
+  <section></section>
+  
+  <nav class="fullscreen-menu">
+    <ul>
+      <li>
+        <button class="accordion effect">Det vi laver</button>
+        <div class="accordion-content">
+          <ul>
+            <li><a href="team.html" class="effect">Teamudvikling</a></li>          
+              <li><a href="ledelse.html" class="effect">Ledelsesudvikling</a></li>
+            <li><a href="tema.html" class="effect">Temadage & workshop</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a href="kunder.html" class="effect">Kunder</a></li>
+      <li><a href="omos.html" class="effect">Om os</a></li>
+      <li><a href="kontakt.html" class="effect">Kontakt</a></li>
+    </ul>
+  </nav>
+  <div class="fixed top-0 left-0 z-50 flex"><a class="py-10 px-4 z-1" href="index.html"><img src="img/logo1sm.svg " alt="" class=" w-36 md:w-40 lg:w-48"></a></div>
+
+  <header class="bg-header flex items-center justify-center h-auto py-16">
+    <div class=" text-center p-6 md:p-8">
+  
+      <h1 class="text-3xl md:text-5xl uppercase font-semibold drop-shadow-lg">
+      Ledelsesudvikling
+      </h1>
+  
+    </div>
+  </header>
+  
+  <div class="leading-normal mx-auto py-12 px-10 md:px-32  lg:px-52 ">
+    <h3 class="mb-6 text-lg font-medium md:text-xl">Vi finder den form for ledelsesudvikling der passer jer. Det kan være coaching, et procesforløb, supervision eller en teambuildingsdag.
+    </h3>
+  <h2 class="font-semibold text-lg pb-3">Den enkelte leder
+
+  </h2><p>Den enkelte leder
+    Du har sikkert en rigtig god grund til at være leder. En stærk motivation. Den skal være i live og have sit daglige liv i dine ledelseshandlinger. Derigennem muliggør du slagkraft og at du bliver langtidsholdbar.<br><br>
+    
+    Som leder skal du udvikles derfra, hvor du har et behov. <br><br>
+    
+    Er du ny leder, kan der være mange konkrete og praktiske opgaver, der skal løses for første gang. Her vil du kunne modtage brugbare råd og vejledning. Samtidig skal du også finde ud af hvem du er som leder. Eller du skal vænne dig til den meget anderledes position og rolle det er, at gå fra at være ligestillet kollega til at have en magtposition og en mere asymmetrisk position i forholdet til de andre medarbejdere. De personlige forandringer du her kan opleve, hjælper vi dig til at integrere, modne og gøre dig til en endnu bedre leder.<br><br>
+    
+     
+    Har du flere års ledererfaring, kan du måske ønske en større og bedre sammenhæng mellem dig som person, som menneske, og så det arbejde der skal udføres som leder. Der er mange dilemmaer som kan være vanskelige. Vi kan hjælpe til at rumme kompleksiteten. Mange ledere oplever temaer opstå og være genkendelige over tid. Udvid din forståelse af dem og dig selv med vores hjælp. 
+    </p>
+  </div>
+  <div class="borderline md:w-auto border-b border-emerald-900  md:mx-72 justify-center px-10   px-52 "></div>
+
+  <div class="leading-normal mx-auto py-12 px-10 md:px-32  lg:px-52">
+    <h2 class="font-semibold text-lg pb-3">Intentionsfokuseret ledelse
+
+  </h2><p>Ønsker du at tage næste niveau for autentisk, nærværende og human ledelse, så vil vi anbefale dig vores intentionsfokuserede lederudvikling. Der er tale om en unik udviklet teori og metode, som gør dig i stand til at være leder med nærvær, autenticitet og gennemslagskraft. Vi tager livtag med de store eksistentielle og uomgængelige menneskelige spørgsmål og integrerer dem på elegant vis i det enkelt øjeblik på din arbejdsplads. På den måde lærer du at inkorporere dem i en meningsfuld helhed og leve det (arbejds-)liv du ønsker.<br>
+    Forløbet egner sig særligt til de mere erfarne ledere, der ønsker at gå et skridt videre i udviklingen af deres personlige lederskab.<br>
+    Du vil få anbefalet litteratur, øvelser og blive coachet til et sted i din faglige udvikling, hvor dine muligheder er størst og til en tilstedeværelse i dit liv, der er mest ønskelig.
+    
+</p>
+  </div>
+  
+  <div class="bg-quote flex items-center justify-center h-auto py-32">
+  
+  </div>
+  
+  <div class="leading-normal mx-auto py-12 px-10 md:px-32  lg:px-52">
+    <h2 class="font-semibold text-lg pb-3">Lederteamet
+
+
+  </h2><p>Vores klare mål er at skabe afstemte, loyale lederteams, der i fællesskab løfter opgaven.
+    Derfor giver det mening at arbejde med intentionen i forhold til ledelse. En brugbar klarhed i ledelsesgrundlaget er afgørende for at kunne støtte hinanden. <br>
+    Det indebærer, at lederteamet får en fælles organisatorisk forståelse. For typisk har man ikke afklaret tilstrækkeligt, hvad ledelse egentlig er eller hvordan man skal forstå en organisation. At være i en ledelse er forbundet med at placere sig hierarkisk på en særlig måde, men hvordan? Som autoritet, som facilitator eller noget helt tredje? <br>
+    Det spændende ved det gode ledelsesteam er også at kunne bruge hinanden som feedbackgivere. For når der er opnået øget fælles forståelse, kan man bruge hinanden til at sikre, at man også handler i overensstemmelse med det man ønsker.<br>
+    At være leder kan være forbundet med krydspres og ansvar på en helt særlig måde. Vi hjælper jeres ledelsesteam til at blive det sted, hvor I som ledere kan møde den tiltrængte forståelse, opbakning og refleksion. <br>
+    Sammen skaber vi desuden bedre evner til at rumme og handle i en VUCA-verden (Volatility-Uncertainty-Complexity-Ambiguity), der ikke er blevet mindre foranderlig siden begrebet blev skabt tilbage i slutfirserne. Både for jer ledere, men også hvordan I kan støtte medarbejderne i bedre at kunne være i den.
+    
+</p>
+  </div>
+
+  <section class="pb-20 px-10 md:px-20 lg:px-40">
+    <div class="flex flex-col items-center justify-center">
+      <div class="grid gap-10 lg:gap-36 grid-cols-1 md:grid-cols-3 justify-center">
+        <button class="h-48 w-48 uppercase team shadow-md text-white font-semibold text-lg tracking-widest hover:shadow-none hover:tracking-tight "><a href="team.html">Teams</a></button>
+        <button class="h-48 w-48 uppercase leder shadow-md text-white font-semibold text-lg tracking-widest hover:shadow-none hover:tracking-tight"><a href="ledelse.html">Ledelse</a></button>
+        <button class="h-48 w-48 uppercase tema shadow-md text-white font-semibold text-lg tracking-widest hover:shadow-none hover:tracking-tight"><a href="tema.html">Workshops</a></button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="flex flex-col ">
+    <div class="grid grid-cols-1 gap-8 md:gap-28 md:grid-cols-5 p-10
+    align-middle content-end">
+      <div class="w-48 left-0 md:col-span-2 md:col-start-1 md:col-end-2 content-end"><img src="img/logo1sm.svg" alt=""></div>
+    <div class=" w-48 md:col-start-3 md:col-end-5"><p><span class="font-medium">Telefon:</span> +45 2065 2523<br>
+      <span class="font-medium">Mail:</span> mail@hum-ans.dk</p>
+    <a href="https://www.linkedin.com/company/hum-ans/" class="effect font-medium text-emerald-800">LinkedIn</a></div>
+    <div class="  w-48 left-0 md:col-start-5 md:col-end-5"><p><span class="font-medium">Hum-ans aps</span><br>
+      Hindegade 6<br>
+      1303 København K<br>
+      <span class="font-medium">CVR</span> 43946978</p></div>
+    </div>
+  </footer>
+
+
+
+  <script src="script.js"></script>
+  <script>const menuBtn = document.querySelector('.menu-btn');
+    const overlay = document.querySelector('.overlay');
+    const menu = document.querySelector('.fullscreen-menu');
+    
+    menuBtn.addEventListener('click', () => {
+      menu.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+
+    const menuToggle = document.querySelector(".toggle");
+      const showcase = document.querySelector(".showcase");
+
+      menuToggle.addEventListener("click", () => {
+        menuToggle.classList.toggle("active");
+        showcase.classList.toggle("active");
+      });
+
+      var accordions = document.getElementsByClassName("accordion");
+
+      for (var i = 0; i < accordions.length; i++) {
+        accordions[i].onclick = function () {
+          this.classList.toggle("is-open");
+
+          var content = this.nextElementSibling;
+          if (content.style.maxHeight) {
+            // accordion is currently open, so close it
+            content.style.maxHeight = null;
+          } else {
+            // accordion is currently closed, so open it
+            content.style.maxHeight = content.scrollHeight + "px";
+          }
+        };
+      }
+    </script>
+</body>
+</html>
